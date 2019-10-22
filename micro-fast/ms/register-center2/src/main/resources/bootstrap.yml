@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    config:
+      name: eureka-server2
+      profile: dev
+      label: master
+      uri: http://config:server@www.config.com:10000/
+      fail-fast: true
+      retry:
+        max-attempts: 30
+        initial-interval: 2000
+        multiplier: 1.18
+        max-interval: 30000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://micro:fast@www.register1.com:10002/eureka #和其他注册中心连接
+  instance:
+    hostname: www.register2.com

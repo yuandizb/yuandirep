@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>boot-starter</artifactId>
+	<packaging>pom</packaging>
+
+	<name>boot-starter</name>
+	<description>Spring boot starter</description>
+
+	<parent>
+		<groupId>com.micro.fast</groupId>
+		<artifactId>micro-fast</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modules>
+		<module>boot-starter-common</module>
+		<module>boot-starter-util</module>
+		<module>boot-starter-maven-plugin</module>
+		<module>boot-starter-netty</module>
+		<module>boot-starter-fastdfs-client</module>
+		<module>boot-starter-elasticsearch</module>
+		<module>boot-starter-security-oauth</module>
+		<module>boot-starter-ssm</module>
+		<module>boot-starter-ssm-sharding</module>
+	</modules>
+</project>

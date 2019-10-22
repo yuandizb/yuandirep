@@ -1,0 +1,37 @@
+# 从配置中心加载文件
+spring:
+  cloud:
+    config:
+      profile: dev
+      label: master
+      name: upms
+      uri: http://config:server@www.config.com:10000/
+      # 实现配置中心的高可用
+      discovery:
+        service-id: config-server
+        enabled: false
+      username: config
+      password: server
+#     从配置中心加载服务失败重试，此设置可以降低部署难度可以较好的支持docker部署，合理进行配置后，部署时应用启动顺序不会影响程序是否启动成功
+#     但会牺牲配置中心的高可用。在服务较少的时候可采用此配置。在微服务数量数量巨大时应选用配置中心高可用，按顺序启动微服务
+      fail-fast: true
+      retry:
+        max-attempts: 30
+        initial-interval: 2000
+        multiplier: 1.18
+        max-interval: 30000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://micro:fast@www.register1.com:10002/eureka/,http://micro:fast@www.register2.com:10004/eureka/ #配置所有的注册中心
+  instance:
+    hostname: www.upms.com
+#   配置熔断监控的集群名称
+    metadata-map:
+      cluster: ms-upms
+    instance-id: www.upms.com
+
+
+
+
+

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+cd ./config-server/
+mvn  docker:build
+cd ../gateway/
+mvn  docker:build
+cd ../register-center1/
+mvn  docker:build
+cd ../register-center2/
+mvn  docker:build
+cd ../ucenter/
+mvn  docker:build
+cd ../upms/
+mvn  docker:build
+cd ../oauth/
+mvn  docker:build
+cd ../monitor-turbine/
+mvn  docker:build
+cd ../monitor-zipkin/
+

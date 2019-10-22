@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.micro.fast.upms.dao.UpmsUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.micro.fast.upms.pojo.UpmsUserRole" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, role_id, ctime, uptime, version
+  </sql>
+  <insert id="batchInsert">
+    INSERT INTO upms_user_role (user_id,role_id,ctime,version) VALUES
+      <foreach collection="roleIds" open="" close="" item="roleId" separator="," >
+        (#{userId},#{roleId},unix_timestamp(now()),0)
+      </foreach>
+  </insert>
+  <delete id="batchDelete">
+    DELETE FROM upms_user_role WHERE user_id = #{userId} and role_id in
+    <foreach collection="roleIds" separator="," open="(" close=")" item="roleId" >
+      #{roleId}
+    </foreach>
+  </delete>
+</mapper>

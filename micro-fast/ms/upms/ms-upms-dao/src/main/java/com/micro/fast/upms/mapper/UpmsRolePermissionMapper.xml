@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.micro.fast.upms.dao.UpmsRolePermissionMapper" >
+  <cache flushInterval="60000" readOnly="true" size="1200" />
+  <resultMap id="BaseResultMap" type="com.micro.fast.upms.pojo.UpmsRolePermission" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, permission_id, ctime, uptime, version
+  </sql>
+  <!--自定义-->
+  <insert id="batchInsert">
+    INSERT INTO upms_role_permission (role_id,permission_id,ctime,version) VALUES
+      <foreach collection="permissionIds" close=" " item="permissionId" open=" " separator=",">
+        (#{roleId},#{permissionId},unix_timestamp(now()),0)
+      </foreach>
+  </insert>
+
+  <delete id="batchDelete">
+    DELETE FROM upms_role_permission WHERE role_id = #{roleId} and permission_id in 
+    <foreach collection="permissionIds" separator="," open="(" close=")" item="permissionId" >
+      #{permissionId}
+    </foreach>
+  </delete>
+</mapper>

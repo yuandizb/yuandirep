@@ -1,0 +1,6 @@
+# 示例配置
+elasticsearch:
+    hosts:
+        - localhost:9300
+    settings:
+        - cluster.name:lsy

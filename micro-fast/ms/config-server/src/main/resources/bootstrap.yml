@@ -1,0 +1,19 @@
+# 程序实例的配置，git仓库的配置
+spring:
+  application:
+    name: config-server
+  cloud:
+      config:
+        server:
+          git:
+            uri: https://git.oschina.net/kklt1996/config-server/
+            username: kklt1996
+            password: studyj2e
+eureka:
+  client:
+    service-url:
+      defaultZone: http://micro:fast@www.register1.com:10002/eureka/,http://micro:fast@www.register2.com:10004/eureka/ #配置所有的注册中心
+  instance:
+    hostname: www.config.com
+    appname: config-server
+

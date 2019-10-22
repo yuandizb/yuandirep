@@ -1,0 +1,26 @@
+server:
+  port: 10000
+# 健康检查的相关配置
+management:
+  health:
+    diskspace:
+      enabled: true
+  security:
+    enabled: false
+  port: 10001
+# info 信息的获取
+info:
+  app:
+    profiles: dev
+    name: "@project.name@" #从pom.xml中获取
+    description: "@project.description@"
+    version: "@project.version@"
+security:
+  basic:
+    enabled: true
+  user:
+    name: config
+    password: server
+logging:
+  config: classpath:log4j2-dev.xml
+

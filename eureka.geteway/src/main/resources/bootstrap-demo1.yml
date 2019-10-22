@@ -1,0 +1,13 @@
+
+eureka: 
+  client:
+    region: defaultZone
+    service-url:
+      defaultZone:  http://localhost:5000//eureka/
+      isolatedZone: http://localhost:5000//eureka/
+
+zuul:
+  routes:
+    FrontDataService:
+      path: /FrontDataService/**
+      url: http://11.19.112.38:30010/

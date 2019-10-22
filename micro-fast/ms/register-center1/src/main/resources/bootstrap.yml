@@ -1,0 +1,21 @@
+#从配置中心加载配置文件,启动eureka-server服务
+spring:
+  cloud:
+    config:
+      uri: http://config:server@www.config.com:10000/
+      profile: dev
+      label: master
+      name: eureka-server
+      fail-fast: true
+      retry:
+        max-attempts: 30
+        initial-interval: 2000
+        multiplier: 1.18
+        max-interval: 30000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://micro:fast@www.register2.com:10004/eureka #和其他注册中心连接
+  instance:
+    hostname: www.register1.com
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>upms</artifactId>
+	<packaging>pom</packaging>
+
+	<name>ms-upms</name>
+	<description>upms</description>
+
+    <parent>
+        <groupId>com.micro.fast</groupId>
+		<artifactId>ms</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+	<modules>
+		<module>ms-upms-common</module>
+		<module>ms-upms-dao</module>
+		<module>ms-upms-service</module>
+		<module>ms-upms-web</module>
+		<module>ms-upms-feign</module>
+		<module>ms-upms-boot</module>
+		<module>ms-upms-app</module>
+	</modules>
+
+	<dependencies>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.micro.fast</groupId>
+				<artifactId>mybatis-generator-extend-maven-plugin</artifactId>
+				<version>${micro.fast.version}</version>
+			</plugin>
+            <!--生成mybatis dao 层 sql mapper的插件-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <configuration>
+					<!--冗余的-->
+                    <verbose>true</verbose>
+                    <overwrite>false</overwrite>
+                </configuration>
+            </plugin>
+		</plugins>
+		<finalName>ms-upms-pom</finalName>
+	</build>
+</project>

@@ -1,0 +1,96 @@
+info:
+  app:
+    profiles: dev
+    name: all-in-one
+    description: all-in-one
+spring:
+  application:
+    name: all-in-one
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+      enabled: true
+  datasource:
+    druid:
+      username: root
+      password: studyj2e
+      url: jdbc:mysql://127.0.0.1:3317/micro?useUncoide=true&chracterEncoding=utf-8&useSSL=false
+      master:
+        initial-size: 19
+        username: root
+        password: studyj2e
+        url: jdbc:mysql://127.0.0.1:3317/micro?useUncoide=true&chracterEncoding=utf-8&useSSL=false
+      #数据源共用基本配置
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 20
+      max-active: 50
+      min-idle: 10
+      max-wait: 1000
+      pool-prepared-statements: true
+      test-on-borrow: true
+      test-while-idle: true
+      time-between-log-stats-millis: 10000
+      min-evictable-idle-time-millis: 100000
+      max-evictable-idle-time-millis: 200000
+      default-auto-commit: true
+      filters: stat,wall
+      #url监控配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /static/*,/druid/*
+        session-stat-enable: false
+      stat-view-servlet:
+        login-username: micro
+        login-password: fast
+        reset-enable: true
+        allow: 127.0.0.1,localhost
+        deny: 127.0.0.2
+        enabled: true
+        url-pattern: /druid/*
+      # aop拦截监控
+      aop-patterns: com.micro.*
+      #statFilter配置
+      filter:
+        stat:
+          connection-stack-trace-enable: true
+          db-type: mysql
+          enabled: true
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 2000
+  aop:
+    proxy-target-class: true
+  profiles:
+    active: dev
+server:
+  port: 8080
+  tomcat:
+      uri-encoding: utf-8
+# 健康检查的相关配置
+management:
+  security:
+    enabled: false #springbooot1.5.*以后如果要使用refresh功能的要设置false
+  port: 18080
+#　--------------------------
+#  自定义的配置参数
+#  --------------------------
+mybatis:
+  typeAliasesPackage: com.micro.fast.upms.pojo,com.micro.fast.ucenter.pojo
+  mappers: classpath*:/com/micro/fast/**/mapper/*.xml
+  pageHelperProperties:
+    - dialect:mysql
+# boot-satrter-security-oauth模块自定义的配置
+ms:
+  security:
+    code:
+      image:
+        width: 67
+        height: 23
+        length: 4
+        expireIn: 300
+    oauth2:
+      clients[0]:
+        clientId: ms
+        clientSecret: ms

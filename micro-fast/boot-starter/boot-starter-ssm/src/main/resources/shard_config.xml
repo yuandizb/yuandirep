@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE shardingConfig PUBLIC
+        "-//shardbatis.googlecode.com//DTD Shardbatis 2.0//EN"
+        "http://shardbatis.googlecode.com/dtd/shardbatis-config.dtd">
+<!-- shardbatis的示例配置-->
+<shardingConfig>
+    <ignoreList>
+        <value></value>
+    </ignoreList>
+    <!-- parseList可选配置 如果配置了parseList,只有在parseList范围内并且不再ignoreList内的sql才会被解析和修改 -->
+    <parseList>
+        <value>xxx.dao.UserMapper.insertSelective</value>
+        <value>xxx.dao.UserMapper.selectByPrimaryKey</value>
+        <value>xxx.UserMapper.updateByPrimaryKeySelective</value>
+    </parseList>
+    <!-- 配置分表策略 tableName指的是实际的表名，strategyClass对应的分表策略实现类 -->
+    <strategy tableName="user" strategyClass="xxx.UserShardStrategyImpl"/>
+</shardingConfig>
+
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>ms</artifactId>
+	<packaging>pom</packaging>
+
+	<name>ms</name>
+	<description>ms</description>
+
+    <parent>
+        <groupId>com.micro.fast</groupId>
+        <artifactId>micro-fast</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.micro.fast</groupId>
+			<artifactId>boot-starter-common</artifactId>
+			<version>${micro.fast.version}</version>
+		</dependency>
+		<!--去除默认的logback依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--使用log4j2记录日志-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<!--log4j2-flume-appender依赖-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-flume-ng</artifactId>
+		</dependency>
+		<!--引入swagger2文档依赖-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>config-server</module>
+		<module>register-center1</module>
+		<module>register-center2</module>
+		<module>monitor-turbine</module>
+		<module>monitor-zipkin</module>
+		<module>oauth</module>
+		<module>gateway</module>
+		<module>upms</module>
+		<module>ucenter</module>
+	</modules>
+</project>

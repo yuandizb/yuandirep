@@ -1,0 +1,10 @@
+# 示例配置
+fastdfs:
+  connectTimeoutInSeconds : 5
+  networkTimeoutInSeconds : 30
+  charset : UTF-8
+  httpAntiStealToken : false
+  httpSecretKey : FastDFS1234567890
+  httpTrackerHttpPort : 80
+  trackerServers : 10.129.46.11:22122
+

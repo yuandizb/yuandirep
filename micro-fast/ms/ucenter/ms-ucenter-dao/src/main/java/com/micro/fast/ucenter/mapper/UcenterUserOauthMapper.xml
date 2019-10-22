@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.micro.fast.ucenter.dao.UcenterUserOauthMapper" >
+  <resultMap id="BaseResultMap" type="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="oauth_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="oauth_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="open_id" jdbcType="VARBINARY" javaType="_byte[]" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, oauth_id, status, ctime, uptime, version
+  </sql>
+  <sql id="Blob_Column_List" >
+    open_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ucenter_user_oauth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ucenter_user_oauth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    insert into ucenter_user_oauth (id, user_id, oauth_id, 
+      status, ctime, uptime, 
+      version, open_id)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{oauthId,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}, #{uptime,jdbcType=BIGINT}, 
+      #{version,jdbcType=INTEGER}, #{openId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    insert into ucenter_user_oauth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="oauthId != null" >
+        oauth_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="uptime != null" >
+        uptime,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="oauthId != null" >
+        #{oauthId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="uptime != null" >
+        #{uptime,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    update ucenter_user_oauth
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="oauthId != null" >
+        oauth_id = #{oauthId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="uptime != null" >
+        uptime = #{uptime,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    update ucenter_user_oauth
+    set user_id = #{userId,jdbcType=INTEGER},
+      oauth_id = #{oauthId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      ctime = #{ctime,jdbcType=BIGINT},
+      uptime = #{uptime,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.micro.fast.ucenter.pojo.UcenterUserOauth" >
+    update ucenter_user_oauth
+    set user_id = #{userId,jdbcType=INTEGER},
+      oauth_id = #{oauthId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      ctime = #{ctime,jdbcType=BIGINT},
+      uptime = #{uptime,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

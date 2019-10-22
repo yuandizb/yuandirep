@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mybatis-generator-extend-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
+
+    <name>mybatis-generator-extend</name>
+    <description>mybatis-generator-extend-maven-plugin</description>
+
+    <parent>
+        <groupId>com.micro.fast</groupId>
+        <artifactId>boot-starter-maven-plugin</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <!--micro-fast-工具类依赖-->
+        <dependency>
+            <groupId>com.micro.fast</groupId>
+            <artifactId>boot-starter-util</artifactId>
+            <version>${micro.fast.version}</version>
+        </dependency>
+        <!--freemarker模板引擎的依赖-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <!--数据库连接-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!--maven-plugin插件开发依赖-->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- dependencies to annotations -->
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>mybatis-generator-extend-maven-plugin</finalName>
+    </build>
+</project>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lishouyu</groupId>
+    <artifactId>all-in-one</artifactId>
+    <packaging>jar</packaging>
+
+    <name>all-in-one</name>
+    <description>all-in-one</description>
+
+    <parent>
+        <groupId>com.micro.fast</groupId>
+        <artifactId>micro-fast</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.micro.fast</groupId>
+            <artifactId>boot-starter-ssm</artifactId>
+            <version>${micro.fast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.micro.fast</groupId>
+            <artifactId>boot-starter-security-oauth</artifactId>
+            <version>${micro.fast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.micro.fast</groupId>
+            <artifactId>ms-upms-boot</artifactId>
+            <version>${micro.fast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.micro.fast</groupId>
+            <artifactId>ms-ucenter-boot</artifactId>
+            <version>${micro.fast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!--生成mybatis dao 层 sql mapper的插件-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>micro-fast-all-in-one</finalName>
+    </build>
+</project>

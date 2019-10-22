@@ -1,0 +1,1 @@
+package com.micro.fast.security.app.config.component;

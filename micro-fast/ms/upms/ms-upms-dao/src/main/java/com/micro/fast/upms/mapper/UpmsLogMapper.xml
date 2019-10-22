@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.micro.fast.upms.dao.UpmsLogMapper" >
+  <resultMap id="BaseResultMap" type="com.micro.fast.upms.pojo.UpmsLog" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="descirption" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_time" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="spend_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="base_path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="uri" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="method" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_agent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="permissions" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.micro.fast.upms.pojo.UpmsLog" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="descirption" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_time" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="spend_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="base_path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="uri" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="method" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_agent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="permissions" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uptime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parameter" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="result" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, descirption, username, start_time, spend_time, base_path, uri, url, method, user_agent, 
+    ip, permissions, ctime, uptime, version
+  </sql>
+  <sql id="Blob_Column_List" >
+    parameter, result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from upms_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from upms_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.micro.fast.upms.pojo.UpmsLog" >
+    insert into upms_log (id, descirption, username, 
+      start_time, spend_time, base_path, 
+      uri, url, method, user_agent, 
+      ip, permissions, ctime, 
+      uptime, version, parameter, 
+      result)
+    values (#{id,jdbcType=INTEGER}, #{descirption,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=BIGINT}, #{spendTime,jdbcType=INTEGER}, #{basePath,jdbcType=VARCHAR}, 
+      #{uri,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{permissions,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
+      #{uptime,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{parameter,jdbcType=LONGVARCHAR}, 
+      #{result,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.micro.fast.upms.pojo.UpmsLog" >
+    insert into upms_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="descirption != null" >
+        descirption,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="spendTime != null" >
+        spend_time,
+      </if>
+      <if test="basePath != null" >
+        base_path,
+      </if>
+      <if test="uri != null" >
+        uri,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="userAgent != null" >
+        user_agent,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="permissions != null" >
+        permissions,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="uptime != null" >
+        uptime,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="parameter != null" >
+        parameter,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="descirption != null" >
+        #{descirption,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="spendTime != null" >
+        #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="basePath != null" >
+        #{basePath,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null" >
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null" >
+        #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="uptime != null" >
+        #{uptime,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="parameter != null" >
+        #{parameter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.micro.fast.upms.pojo.UpmsLog" >
+    update upms_log
+    <set >
+      <if test="descirption != null" >
+        descirption = #{descirption,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="spendTime != null" >
+        spend_time = #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="basePath != null" >
+        base_path = #{basePath,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null" >
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null" >
+        permissions = #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="uptime != null" >
+        uptime = #{uptime,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="parameter != null" >
+        parameter = #{parameter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.micro.fast.upms.pojo.UpmsLog" >
+    update upms_log
+    set descirption = #{descirption,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=BIGINT},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      base_path = #{basePath,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      uptime = #{uptime,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER},
+      parameter = #{parameter,jdbcType=LONGVARCHAR},
+      result = #{result,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.micro.fast.upms.pojo.UpmsLog" >
+    update upms_log
+    set descirption = #{descirption,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=BIGINT},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      base_path = #{basePath,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      uptime = #{uptime,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

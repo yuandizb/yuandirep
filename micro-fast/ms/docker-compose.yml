@@ -1,0 +1,79 @@
+# docker-compose主要用于编排多个容器组成的应用,可以使用docker-compose 运行,也可以使用swram运行
+version: '2'
+services:
+# mysql数据库
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - /opt/mysql-master:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: studyj2e
+    command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci"]
+# redis
+  redis:
+    image: redis:latest
+    networks:
+      - backend
+# rabbitmq
+  rabbitmq:
+    image: rabbitmq:3
+    networks:
+      - backend
+# 配置中心
+  ms-config-server:
+    image: "registry.cn-hangzhou.aliyuncs.com/lishouyu/hub:ms-config-serverV0.0.1-SNAPSHOT"
+    networks:
+      - backend
+    working_dir: /workhome
+    command: ["./cmd-${PROFILE}.sh","ms-register-center1","ms-register-center2"]
+# 注册中心
+  ms-register-center1:
+    image: "registry.cn-hangzhou.aliyuncs.com/lishouyu/hub:ms-register-center1V0.0.1-SNAPSHOT"
+    networks:
+      - backend
+    depends_on:
+      - ms-config-server
+    working_dir: /workhome
+    command: ["./cmd-${PROFILE}.sh","ms-register-center1","ms-register-center2","ms-config-server"]
+  ms-register-center2:
+    image: "registry.cn-hangzhou.aliyuncs.com/lishouyu/hub:ms-register-center2V0.0.1-SNAPSHOT"
+    networks:
+      - backend
+    depends_on:
+      - ms-config-server
+    working_dir: /workhome
+    command: ["./cmd-${PROFILE}.sh","ms-register-center1","ms-register-center2","ms-config-server"]
+  ms-gateway:
+    image: "registry.cn-hangzhou.aliyuncs.com/lishouyu/hub:ms-gatewayV0.0.1-SNAPSHOT"
+    expose:
+      - 10006
+    ports:
+      - "10006:10006"
+    networks:
+      - backend
+    depends_on:
+      - rabbitmq
+      - redis
+      - ms-register-center1
+      - ms-register-center2
+    working_dir: /workhome
+    command: ["./cmd-${PROFILE}.sh","ms-register-center1","ms-register-center2","redis","6379","rabbitmq","5672"]
+  ms-upms:
+    image: "registry.cn-hangzhou.aliyuncs.com/lishouyu/hub:ms-upmsV0.0.1-SNAPSHOT"
+    networks:
+      - backend
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - ms-register-center1
+      - ms-register-center2
+    working_dir: /workhome
+    command: ["./cmd-${PROFILE}.sh","ms-register-center1","ms-register-center2","redis","6379","rabbitmq","5672","mysql:3306"]
+# 自定义网络,port-前端网络,backend后端网络
+networks:
+  backend:
+
+
