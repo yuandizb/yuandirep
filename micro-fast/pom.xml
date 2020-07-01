@@ -84,7 +84,7 @@
         <wiremock.version>2.11.0</wiremock.version>
         <spring-boot-devtools.optional>true</spring-boot-devtools.optional>
         <spring-boot-admin.version>1.5.7</spring-boot-admin.version>
-        <quartz.version>2.2.1</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <shardbatis.version>2.0.0B</shardbatis.version>
         <net.sf.jsqlparser.jsqlparser.version>0.7.0</net.sf.jsqlparser.jsqlparser.version>
     </properties>
