@@ -40,7 +40,7 @@
         <micro.fast.version>0.0.1-SNAPSHOT</micro.fast.version>
         <springboot.version>1.5.9.RELEASE</springboot.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
-        <spring-cloud-task.version>1.2.2.RELEASE</spring-cloud-task.version>
+        <spring-cloud-task.version>2.3.0</spring-cloud-task.version>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--/主要版本控制属性-->
         <gatling-plugin.version>2.2.4</gatling-plugin.version>
